@@ -206,19 +206,21 @@
   .hero-right {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 24px;
+    flex-shrink: 0;
   }
 
   /* FX Score Ring */
   .fx-score-ring {
     position: relative;
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
   }
 
   .fx-score-ring svg {
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     transform: rotate(-90deg);
   }
 
@@ -233,8 +235,8 @@
     stroke: url(#goldGradient);
     stroke-width: 8;
     stroke-linecap: round;
-    stroke-dasharray: 327;
-    stroke-dashoffset: 72;
+    stroke-dasharray: 251;
+    stroke-dashoffset: 55;
     transition: stroke-dashoffset 1.5s ease-out;
   }
 
@@ -249,7 +251,7 @@
 
   .fx-score-number {
     font-family: var(--font-display);
-    font-size: 40px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--gold);
     line-height: 1;
@@ -283,21 +285,21 @@
 
   .tier-badge {
     position: relative;
-    width: 88px;
-    height: 96px;
+    width: 72px;
+    height: 78px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
-  .tier-badge .shield { width: 88px; height: 96px; }
+  .tier-badge .shield { width: 72px; height: 78px; }
 
   .tier-badge .tier-label {
     position: absolute;
-    top: 30px;
+    top: 24px;
     font-family: var(--font-display);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -306,9 +308,9 @@
 
   .tier-badge .tier-sub {
     position: absolute;
-    top: 50px;
+    top: 40px;
     font-family: var(--font-body);
-    font-size: 8px;
+    font-size: 7px;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -803,15 +805,15 @@
     </div>
     <div class="hero-right">
       <div class="fx-score-ring">
-        <svg viewBox="0 0 130 130">
+        <svg viewBox="0 0 100 100">
           <defs>
             <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#D4A843"/>
               <stop offset="100%" stop-color="#E8C96A"/>
             </linearGradient>
           </defs>
-          <circle class="ring-bg" cx="65" cy="65" r="52"/>
-          <circle class="ring-fill" cx="65" cy="65" r="52"/>
+          <circle class="ring-bg" cx="50" cy="50" r="40"/>
+          <circle class="ring-fill" cx="50" cy="50" r="40"/>
         </svg>
         <div class="fx-score-value">
           <div class="fx-score-number">78</div>
