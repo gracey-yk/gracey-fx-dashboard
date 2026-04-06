@@ -206,19 +206,22 @@
   .hero-right {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 32px;
+    flex-shrink: 0;
+    padding: 8px 0;
   }
 
   /* FX Score Ring */
   .fx-score-ring {
     position: relative;
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
   }
 
   .fx-score-ring svg {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
     transform: rotate(-90deg);
   }
 
@@ -803,15 +806,15 @@
     </div>
     <div class="hero-right">
       <div class="fx-score-ring">
-        <svg viewBox="0 0 130 130">
+        <svg viewBox="0 0 120 120">
           <defs>
             <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#D4A843"/>
               <stop offset="100%" stop-color="#E8C96A"/>
             </linearGradient>
           </defs>
-          <circle class="ring-bg" cx="65" cy="65" r="52"/>
-          <circle class="ring-fill" cx="65" cy="65" r="52"/>
+          <circle class="ring-bg" cx="60" cy="60" r="48"/>
+          <circle class="ring-fill" cx="60" cy="60" r="48"/>
         </svg>
         <div class="fx-score-value">
           <div class="fx-score-number">78</div>
