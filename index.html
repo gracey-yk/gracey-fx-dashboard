@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gracey FX Dashboard — Devoted Guardians Home Health</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1A2E;
+    --navy-mid: #162036;
+    --navy-light: #1D2B45;
+    --navy-surface: #243352;
+    --navy-border: #2E4068;
+    --gold: #D4A843;
+    --gold-light: #E8C96A;
+    --gold-dim: rgba(212, 168, 67, 0.15);
+    --green: #34D399;
+    --green-dim: rgba(52, 211, 153, 0.12);
+    --green-text: #6EE7B7;
+    --amber: #FBBF24;
+    --amber-dim: rgba(251, 191, 36, 0.12);
+    --amber-text: #FCD34D;
+    --red: #F87171;
+    --red-dim: rgba(248, 113, 113, 0.12);
+    --red-text: #FCA5A5;
+    --text-primary: #E8ECF4;
+    --text-secondary: #8B9DC3;
+    --text-dim: #5A6F94;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--navy);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(212, 168, 67, 0.03) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(52, 211, 153, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .app { position: relative; z-index: 1; }
+
+  /* ─── Top Bar ─── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--navy-border);
+    background: rgba(15, 26, 46, 0.85);
+    backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar-left { display: flex; align-items: center; gap: 20px; }
+
+  .gracey-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--navy);
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .logo-sub {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  .topbar-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--navy-border);
+  }
+
+  .plan-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold);
+    background: var(--gold-dim);
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(212, 168, 67, 0.2);
+  }
+
+  .plan-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-enterprise {
+    border: 1px solid var(--navy-border);
+    background: transparent;
+    color: var(--text-secondary);
+  }
+
+  .btn-enterprise:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  .btn-download {
+    border: 1px solid rgba(212, 168, 67, 0.3);
+    background: linear-gradient(135deg, rgba(212, 168, 67, 0.15), rgba(212, 168, 67, 0.05));
+    color: var(--gold);
+  }
+
+  .btn-download:hover {
+    background: linear-gradient(135deg, rgba(212, 168, 67, 0.25), rgba(212, 168, 67, 0.1));
+    border-color: var(--gold);
+  }
+
+  /* ─── Hero Header ─── */
+  .hero {
+    padding: 32px 32px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .hero-left { flex: 1; }
+
+  .agency-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .agency-meta {
+    font-size: 14px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .agency-meta span { display: flex; align-items: center; gap: 5px; }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  /* FX Score Ring */
+  .fx-score-ring {
+    position: relative;
+    width: 130px;
+    height: 130px;
+  }
+
+  .fx-score-ring svg {
+    width: 130px;
+    height: 130px;
+    transform: rotate(-90deg);
+  }
+
+  .ring-bg {
+    fill: none;
+    stroke: var(--navy-surface);
+    stroke-width: 8;
+  }
+
+  .ring-fill {
+    fill: none;
+    stroke: url(#goldGradient);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 327;
+    stroke-dashoffset: 72;
+    transition: stroke-dashoffset 1.5s ease-out;
+  }
+
+  .fx-score-value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fx-score-number {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .fx-score-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  .fx-trend {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-text);
+    margin-top: 4px;
+  }
+
+  /* Tier Badge */
+  .tier-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tier-badge {
+    position: relative;
+    width: 88px;
+    height: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tier-badge .shield { width: 88px; height: 96px; }
+
+  .tier-badge .tier-label {
+    position: absolute;
+    top: 30px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .tier-badge .tier-sub {
+    position: absolute;
+    top: 50px;
+    font-family: var(--font-body);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(15, 26, 46, 0.6);
+  }
+
+  .badge-licensed {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--green-text);
+    font-weight: 500;
+  }
+
+  .badge-licensed .check {
+    width: 14px;
+    height: 14px;
+    background: var(--green);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: white;
+    line-height: 1;
+  }
+
+  /* ─── Dashboard Grid ─── */
+  .dashboard-grid {
+    padding: 24px 32px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.2), transparent);
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-title .period {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .span-full { grid-column: 1 / -1; }
+
+  /* ─── Dimensions ─── */
+  .dimensions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .dimension {
+    background: var(--navy-light);
+    border: 1px solid var(--navy-border);
+    border-radius: 10px;
+    padding: 18px;
+    transition: all 0.25s;
+  }
+
+  .dimension:hover {
+    border-color: rgba(212, 168, 67, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .dim-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .dim-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.35;
+    max-width: 200px;
+  }
+
+  .dim-status {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+
+  .s-strong { color: var(--green-text); background: var(--green-dim); }
+  .s-track { color: var(--amber-text); background: var(--amber-dim); }
+  .s-improve { color: var(--red-text); background: var(--red-dim); }
+
+  .dim-value {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .dim-unit {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-dim);
+  }
+
+  .dim-bench {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--navy-border);
+  }
+
+  .bench-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--navy-surface);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .bench-fill {
+    height: 100%;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .bench-marker {
+    position: absolute;
+    top: -4px;
+    width: 2px;
+    height: 12px;
+    background: var(--text-dim);
+    border-radius: 1px;
+    opacity: 0.6;
+  }
+
+  .bench-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  /* ─── Chart ─── */
+  .chart-container { position: relative; height: 200px; margin-top: 8px; }
+  .chart-svg { width: 100%; height: 100%; }
+  .chart-grid-line { stroke: var(--navy-border); stroke-width: 0.5; stroke-dasharray: 4, 4; }
+  .chart-line { fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .chart-area { fill: url(#chartGrad); opacity: 0.4; }
+  .chart-dot { fill: var(--gold); stroke: var(--navy-mid); stroke-width: 3; }
+  .chart-label { fill: var(--text-dim); font-size: 11px; font-family: var(--font-body); text-anchor: middle; }
+  .chart-val { fill: var(--text-secondary); font-size: 11px; font-family: var(--font-body); text-anchor: end; }
+
+  /* ─── Tier Progress ─── */
+  .tier-track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    position: relative;
+  }
+
+  .tier-track::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 48px;
+    right: 48px;
+    height: 3px;
+    background: var(--navy-surface);
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+
+  .tier-track::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 48px;
+    width: calc(50%);
+    height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  .tier-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tier-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border: 3px solid;
+  }
+
+  .tc-earned { background: var(--green-dim); border-color: var(--green); color: var(--green-text); }
+  .tc-current { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); box-shadow: 0 0 20px rgba(212, 168, 67, 0.25); }
+  .tc-next { background: var(--navy-surface); border-color: var(--navy-border); color: var(--text-dim); }
+
+  .tn-label { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; }
+  .tn-earned { color: var(--green-text); }
+  .tn-current { color: var(--gold); }
+  .tn-next { color: var(--text-dim); }
+  .tn-sub { font-size: 11px; color: var(--text-dim); }
+
+  .tier-info {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: var(--navy-light);
+    border-radius: 8px;
+    border: 1px solid var(--navy-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tier-info-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .tier-info-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .tier-info-text strong { color: var(--gold); font-weight: 600; }
+  .tier-info-text .hl { color: var(--text-primary); font-weight: 500; }
+
+  /* Competitive */
+  .competitive {
+    margin-top: 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--navy-border);
+  }
+
+  .comp-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .comp-rank { font-family: var(--font-display); font-size: 14px; color: var(--text-secondary); }
+  .comp-rank strong { font-size: 22px; color: var(--gold); }
+  .comp-pool { font-size: 12px; color: var(--text-dim); }
+
+  .rank-bar {
+    height: 8px;
+    background: var(--navy-surface);
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .rank-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 4px;
+    width: 83%;
+  }
+
+  .pct-label { text-align: right; font-size: 12px; color: var(--text-dim); margin-top: 6px; }
+
+  /* ─── Interactions ─── */
+  .ix-header {
+    display: grid;
+    grid-template-columns: 36px 1fr 130px 100px 90px;
+    gap: 16px;
+    padding: 0 14px 8px;
+    border-bottom: 1px solid var(--navy-border);
+    margin-bottom: 4px;
+  }
+
+  .ix-header span {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .ix-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .ix-row {
+    display: grid;
+    grid-template-columns: 36px 1fr 130px 100px 90px;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+
+  .ix-row:hover { background: var(--navy-light); }
+
+  .ix-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+
+  .ic-text { background: rgba(99, 102, 241, 0.15); }
+  .ic-call { background: rgba(52, 211, 153, 0.12); }
+  .ic-alert { background: rgba(248, 113, 113, 0.12); }
+
+  .ix-detail { display: flex; flex-direction: column; gap: 2px; }
+  .ix-summary { font-size: 13px; color: var(--text-primary); line-height: 1.4; }
+  .ix-time { font-size: 11px; color: var(--text-dim); }
+  .ix-cat { font-size: 12px; color: var(--text-secondary); }
+
+  .ix-sent {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .sd { width: 7px; height: 7px; border-radius: 50%; }
+  .sp .sd { background: var(--green); }
+  .sp { color: var(--green-text); }
+  .sn .sd { background: var(--amber); }
+  .sn { color: var(--amber-text); }
+  .sc .sd { background: var(--red); }
+  .sc { color: var(--red-text); }
+
+  .ix-stat {
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .si { width: 6px; height: 6px; border-radius: 50%; }
+  .st-r { color: var(--green-text); }
+  .st-r .si { background: var(--green); }
+  .st-p { color: var(--amber-text); }
+  .st-p .si { background: var(--amber); animation: pulse 2s infinite; }
+  .st-e { color: var(--red-text); }
+  .st-e .si { background: var(--red); animation: pulse 1.5s infinite; }
+
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ─── Footer ─── */
+  .dashboard-footer {
+    padding: 20px 32px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left { font-size: 12px; color: var(--text-dim); }
+
+  .footer-right { display: flex; align-items: center; gap: 16px; }
+
+  .footer-link {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .footer-link:hover { color: var(--text-secondary); }
+
+  /* ─── Animations ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero { animation: fadeUp 0.6s ease-out both; }
+  .card { animation: fadeUp 0.6s ease-out both; }
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.15s; }
+  .card:nth-child(3) { animation-delay: 0.2s; }
+  .card:nth-child(4) { animation-delay: 0.25s; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 1100px) { .dimensions-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) {
+    .hero { flex-direction: column; padding: 20px; }
+    .dashboard-grid { padding: 16px; grid-template-columns: 1fr; }
+    .dimensions-grid { grid-template-columns: 1fr; }
+    .topbar { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <a class="gracey-logo">
+        <div class="logo-mark">G</div>
+        <div>
+          <div class="logo-text">Gracey</div>
+          <div class="logo-sub">Family Experience</div>
+        </div>
+      </a>
+      <div class="topbar-divider"></div>
+      <div class="plan-badge"><span class="dot"></span> Pro Plan</div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-enterprise">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        Upgrade to Enterprise
+      </button>
+      <button class="btn btn-download">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+        Download Badge Assets
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-left">
+      <h1 class="agency-name">Devoted Guardians Home Health</h1>
+      <div class="agency-meta">
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg> Phoenix, AZ</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> 142 active patients</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> On Gracey since Jan 2026</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> CMS: 037001</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="fx-score-ring">
+        <svg viewBox="0 0 130 130">
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4A843"/>
+              <stop offset="100%" stop-color="#E8C96A"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring-bg" cx="65" cy="65" r="52"/>
+          <circle class="ring-fill" cx="65" cy="65" r="52"/>
+        </svg>
+        <div class="fx-score-value">
+          <div class="fx-score-number">78</div>
+          <div class="fx-score-label">FX Score</div>
+          <div class="fx-trend">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+            +3 this month
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-display">
+        <div class="tier-badge">
+          <svg class="shield" viewBox="0 0 88 96" fill="none">
+            <path d="M44 4L8 20V48C8 70.5 23 88 44 94C65 88 80 70.5 80 48V20L44 4Z" fill="url(#shieldGold)" stroke="url(#shieldStroke)" stroke-width="1.5"/>
+            <defs>
+              <linearGradient id="shieldGold" x1="8" y1="4" x2="80" y2="94" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#E8C96A"/><stop offset="0.5" stop-color="#D4A843"/><stop offset="1" stop-color="#B8922E"/>
+              </linearGradient>
+              <linearGradient id="shieldStroke" x1="8" y1="4" x2="80" y2="94" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#E8C96A"/><stop offset="1" stop-color="#A07D25"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="tier-label">GOLD</span>
+          <span class="tier-sub">Family Experience</span>
+        </div>
+        <div class="badge-licensed">
+          <span class="check">&#10003;</span>
+          Badge Licensed
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Grid -->
+  <div class="dashboard-grid">
+
+    <!-- Six Dimensions -->
+    <div class="card span-full">
+      <div class="card-title">
+        FX Dimensions
+        <span class="period">Rolling 90-day window &middot; Updated daily</span>
+      </div>
+      <div class="dimensions-grid">
+        <div class="dimension">
+          <div class="dim-header">
+            <div class="dim-name">Clinical Escalation Response Time</div>
+            <div class="dim-status s-strong">Strong</div>
+          </div>
+          <div class="dim-value">2.4<span class="dim-unit"> hrs avg</span></div>
+          <div class="dim-bench">
+            <div class="bench-bar"><div class="bench-fill" style="width:79%;background:var(--green);"></div><div class="bench-marker" style="left:59%;"></div></div>
+            <div class="bench-label">vs 4.1 hrs</div>
+          </div>
+        </div>
+        <div class="dimension">
+          <div class="dim-header">
+            <div class="dim-name">Medication Discrepancy Follow-Through</div>
+            <div class="dim-status s-strong">Strong</div>
+          </div>
+          <div class="dim-value">84<span class="dim-unit">% resolved</span></div>
+          <div class="dim-bench">
+            <div class="bench-bar"><div class="bench-fill" style="width:84%;background:var(--green);"></div><div class="bench-marker" style="left:71%;"></div></div>
+            <div class="bench-label">vs 71%</div>
+          </div>
+        </div>
+        <div class="dimension">
+          <div class="dim-header">
+            <div class="dim-name">Visit Consistency</div>
+            <div class="dim-status s-improve">Needs Improvement</div>
+          </div>
+          <div class="dim-value">3.2<span class="dim-unit"> per 100 visits</span></div>
+          <div class="dim-bench">
+            <div class="bench-bar"><div class="bench-fill" style="width:65%;background:var(--red);"></div><div class="bench-marker" style="left:72%;"></div></div>
+            <div class="bench-label">vs 2.8</div>
+          </div>
+        </div>
+        <div class="dimension">
+          <div class="dim-header">
+            <div class="dim-name">Care Transition Preparedness</div>
+            <div class="dim-status s-track">On Track</div>
+          </div>
+          <div class="dim-value">73<span class="dim-unit">% readiness</span></div>
+          <div class="dim-bench">
+            <div class="bench-bar"><div class="bench-fill" style="width:73%;background:var(--amber);"></div><div class="bench-marker" style="left:68%;"></div></div>
+            <div class="bench-label">vs 68%</div>
+          </div>
+        </div>
+        <div class="dimension">
+          <div class="dim-header">
+            <div class="dim-name">Caregiver Confidence Trajectory</div>
+            <div class="dim-status s-strong">Strong</div>
+          </div>
+          <div class="dim-value">+18<span class="dim-unit"> net sentiment</span></div>
+          <div class="dim-bench">
+            <div class="bench-bar"><div class="bench-fill" style="width:82%;background:var(--green);"></div><div class="bench-marker" style="left:60%;"></div></div>
+            <div class="bench-label">vs +12</div>
+          </div>
+        </div>
+        <div class="dimension">
+          <div class="dim-header">
+            <div class="dim-name">Family-Reported Safety Incidents</div>
+            <div class="dim-status s-track">On Track</div>
+          </div>
+          <div class="dim-value">1.1<span class="dim-unit"> per 100 pts</span></div>
+          <div class="dim-bench">
+            <div class="bench-bar"><div class="bench-fill" style="width:75%;background:var(--amber);"></div><div class="bench-marker" style="left:64%;"></div></div>
+            <div class="bench-label">vs 1.4 (lower=better)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trend Chart -->
+    <div class="card">
+      <div class="card-title">FX Score Trend <span class="period">Last 6 months</span></div>
+      <div class="chart-container">
+        <svg class="chart-svg" viewBox="0 0 480 200" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#D4A843" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#D4A843" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="50" y1="30" x2="460" y2="30" class="chart-grid-line"/>
+          <line x1="50" y1="70" x2="460" y2="70" class="chart-grid-line"/>
+          <line x1="50" y1="110" x2="460" y2="110" class="chart-grid-line"/>
+          <line x1="50" y1="150" x2="460" y2="150" class="chart-grid-line"/>
+          <text x="42" y="34" class="chart-val">90</text>
+          <text x="42" y="74" class="chart-val">80</text>
+          <text x="42" y="114" class="chart-val">70</text>
+          <text x="42" y="154" class="chart-val">60</text>
+          <path class="chart-area" d="M 118 138 L 186 126 L 254 110 L 322 98 L 390 86 L 458 62 L 458 170 L 118 170 Z"/>
+          <path class="chart-line" d="M 118 138 L 186 126 L 254 110 L 322 98 L 390 86 L 458 62"/>
+          <circle class="chart-dot" cx="118" cy="138" r="5"/>
+          <circle class="chart-dot" cx="186" cy="126" r="5"/>
+          <circle class="chart-dot" cx="254" cy="110" r="5"/>
+          <circle class="chart-dot" cx="322" cy="98" r="5"/>
+          <circle class="chart-dot" cx="390" cy="86" r="5"/>
+          <circle class="chart-dot" cx="458" cy="62" r="6"/>
+          <text x="118" y="128" class="chart-label" fill="#8B9DC3">62</text>
+          <text x="186" y="116" class="chart-label" fill="#8B9DC3">65</text>
+          <text x="254" y="100" class="chart-label" fill="#8B9DC3">69</text>
+          <text x="322" y="88" class="chart-label" fill="#8B9DC3">72</text>
+          <text x="390" y="76" class="chart-label" fill="#8B9DC3">75</text>
+          <text x="458" y="52" class="chart-label" fill="#D4A843" font-weight="600">78</text>
+          <text x="118" y="190" class="chart-label">Jan</text>
+          <text x="186" y="190" class="chart-label">Feb</text>
+          <text x="254" y="190" class="chart-label">Mar</text>
+          <text x="322" y="190" class="chart-label">Apr</text>
+          <text x="390" y="190" class="chart-label">May</text>
+          <text x="458" y="190" class="chart-label">Jun</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Tier Progress + Competitive -->
+    <div class="card">
+      <div class="card-title">Tier Progress</div>
+      <div class="tier-track">
+        <div class="tier-node">
+          <div class="tier-circle tc-earned">&#10003;</div>
+          <div class="tn-label tn-earned">Silver</div>
+          <div class="tn-sub">Earned</div>
+        </div>
+        <div class="tier-node">
+          <div class="tier-circle tc-current">&#9733;</div>
+          <div class="tn-label tn-current">Gold</div>
+          <div class="tn-sub">Current</div>
+        </div>
+        <div class="tier-node">
+          <div class="tier-circle tc-next">&#9670;</div>
+          <div class="tn-label tn-next">Platinum</div>
+          <div class="tn-sub">Next target</div>
+        </div>
+      </div>
+      <div class="tier-info">
+        <div class="tier-info-icon">&#9650;</div>
+        <div class="tier-info-text">
+          Platinum requires <strong>5 of 6</strong> dimensions at Gold threshold.<br>
+          Currently at <span class="hl">4 of 6</span> — improve <strong>Visit Consistency</strong> to unlock.
+        </div>
+      </div>
+      <div class="competitive">
+        <div class="comp-header">
+          <div class="comp-rank">Rank <strong>#8</strong> of 47 agencies in Arizona</div>
+          <div class="comp-pool">Top 17%</div>
+        </div>
+        <div class="rank-bar"><div class="rank-fill"></div></div>
+        <div class="pct-label">83rd percentile</div>
+      </div>
+    </div>
+
+    <!-- Family Interactions -->
+    <div class="card span-full">
+      <div class="card-title">
+        Recent Family Interactions
+        <span class="period">Last 7 days &middot; 23 total interactions</span>
+      </div>
+      <div class="ix-header">
+        <span></span><span>Interaction</span><span>Category</span><span>Sentiment</span><span>Status</span>
+      </div>
+      <div class="ix-list">
+        <div class="ix-row">
+          <div class="ix-icon ic-alert">&#9888;</div>
+          <div class="ix-detail">
+            <div class="ix-summary">Daughter reports mother's new pain medication not matching discharge instructions</div>
+            <div class="ix-time">Today, 2:14 PM</div>
+          </div>
+          <div class="ix-cat">Medication Discrepancy</div>
+          <div class="ix-sent sc"><span class="sd"></span> Concern</div>
+          <div class="ix-stat st-e"><span class="si"></span> Escalated</div>
+        </div>
+        <div class="ix-row">
+          <div class="ix-icon ic-text">&#128172;</div>
+          <div class="ix-detail">
+            <div class="ix-summary">Son asking about PT visit schedule change — wants to be present for exercises</div>
+            <div class="ix-time">Today, 11:40 AM</div>
+          </div>
+          <div class="ix-cat">Visit Coordination</div>
+          <div class="ix-sent sn"><span class="sd"></span> Neutral</div>
+          <div class="ix-stat st-r"><span class="si"></span> Resolved</div>
+        </div>
+        <div class="ix-row">
+          <div class="ix-icon ic-call">&#128222;</div>
+          <div class="ix-detail">
+            <div class="ix-summary">Spouse called about wound care instructions — nurse visited yesterday but left no written notes</div>
+            <div class="ix-time">Yesterday, 4:22 PM</div>
+          </div>
+          <div class="ix-cat">Clinical Follow-Through</div>
+          <div class="ix-sent sc"><span class="sd"></span> Concern</div>
+          <div class="ix-stat st-r"><span class="si"></span> Resolved</div>
+        </div>
+        <div class="ix-row">
+          <div class="ix-icon ic-text">&#128172;</div>
+          <div class="ix-detail">
+            <div class="ix-summary">"Thank you for coordinating the OT schedule — dad is doing so much better with the new routine"</div>
+            <div class="ix-time">Yesterday, 10:15 AM</div>
+          </div>
+          <div class="ix-cat">Positive Feedback</div>
+          <div class="ix-sent sp"><span class="sd"></span> Positive</div>
+          <div class="ix-stat st-r"><span class="si"></span> Resolved</div>
+        </div>
+        <div class="ix-row">
+          <div class="ix-icon ic-text">&#128172;</div>
+          <div class="ix-detail">
+            <div class="ix-summary">Daughter noticed missed RN visit on Tuesday — no call to reschedule</div>
+            <div class="ix-time">Apr 3, 3:50 PM</div>
+          </div>
+          <div class="ix-cat">Visit Consistency</div>
+          <div class="ix-sent sc"><span class="sd"></span> Concern</div>
+          <div class="ix-stat st-p"><span class="si"></span> Pending</div>
+        </div>
+        <div class="ix-row">
+          <div class="ix-icon ic-call">&#128222;</div>
+          <div class="ix-detail">
+            <div class="ix-summary">Family caregiver asking what to expect in final week — patient discharging April 12</div>
+            <div class="ix-time">Apr 3, 9:30 AM</div>
+          </div>
+          <div class="ix-cat">Care Transition</div>
+          <div class="ix-sent sn"><span class="sd"></span> Neutral</div>
+          <div class="ix-stat st-r"><span class="si"></span> Resolved</div>
+        </div>
+        <div class="ix-row">
+          <div class="ix-icon ic-text">&#128172;</div>
+          <div class="ix-detail">
+            <div class="ix-summary">"Mom seems more confident walking to the bathroom. Whatever the PT is doing is working."</div>
+            <div class="ix-time">Apr 2, 2:05 PM</div>
+          </div>
+          <div class="ix-cat">Positive Feedback</div>
+          <div class="ix-sent sp"><span class="sd"></span> Positive</div>
+          <div class="ix-stat st-r"><span class="si"></span> Resolved</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="dashboard-footer">
+    <div class="footer-left">&copy; 2026 Gracey Care Navigation Services, Inc. &middot; FX Score methodology v1.2 &middot; Data refreshed June 6, 2026 08:00 AM MST</div>
+    <div class="footer-right">
+      <span class="footer-link">Methodology</span>
+      <span class="footer-link">Export Data</span>
+      <span class="footer-link">Support</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
