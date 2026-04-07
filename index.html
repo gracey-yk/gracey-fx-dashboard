@@ -41,16 +41,7 @@
     overflow-x: hidden;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(212, 168, 67, 0.03) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(52, 211, 153, 0.02) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* background texture removed — was causing decorative artifact in top-right */
 
   .app { position: relative; z-index: 1; }
 
