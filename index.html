@@ -31,6 +31,53 @@
     --font-body: 'DM Sans', -apple-system, sans-serif;
   }
 
+  /* ─── Light Mode ─── */
+  .light {
+    --navy: #FFFFFF;
+    --navy-mid: #F7F7F5;
+    --navy-light: #F0F0EC;
+    --navy-surface: #E8E8E4;
+    --navy-border: #D8D8D4;
+    --gold: #B8920E;
+    --gold-light: #D4A843;
+    --gold-dim: rgba(184, 146, 14, 0.1);
+    --green: #15803D;
+    --green-dim: rgba(21, 128, 61, 0.08);
+    --green-text: #15803D;
+    --amber: #A16207;
+    --amber-dim: rgba(161, 98, 7, 0.08);
+    --amber-text: #A16207;
+    --red: #DC2626;
+    --red-dim: rgba(220, 38, 38, 0.06);
+    --red-text: #DC2626;
+    --text-primary: #1A1A1A;
+    --text-secondary: #4A5568;
+    --text-dim: #8B95A5;
+  }
+  .light .topbar { background: rgba(255,255,255,0.9); border-bottom-color: var(--navy-border); }
+  .light .logo-mark { color: #FFFFFF; }
+  .light .gracey-logo .logo-text { color: var(--text-primary); }
+  .light .plan-badge { color: var(--gold); border-color: rgba(184,146,14,0.25); }
+  .light .btn-enterprise { color: var(--text-secondary); border-color: var(--navy-border); }
+  .light .btn-enterprise:hover { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+  .light .btn-download { color: var(--gold); border-color: rgba(184,146,14,0.3); background: rgba(184,146,14,0.06); }
+  .light .fx-score-number { color: var(--gold); }
+  .light .ring-bg { stroke: var(--navy-surface); }
+  .light .ring-fill { stroke: var(--gold); }
+  .light .chart-dot { stroke: var(--navy-mid); }
+  .light .chart-line { stroke: var(--gold); }
+  .light .badge-licensed .check { background: var(--green); }
+  .light .tc-earned { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+  .light .tc-current { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); box-shadow: 0 0 12px rgba(184,146,14,0.15); }
+  .light .card::before { background: linear-gradient(90deg, transparent, rgba(184,146,14,0.12), transparent); }
+  .light .demo-banner { background: var(--gold); color: #FFFFFF; }
+
+  @media print {
+    .topbar, .demo-banner, .mode-toggle { display: none !important; }
+    body, .light { background: white !important; }
+    .card, .dimension { border-color: #ddd !important; box-shadow: none !important; }
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -39,11 +86,14 @@
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
   }
+  .light { background: #FAFAF7; color: var(--text-primary); }
 
   /* background texture removed — was causing decorative artifact in top-right */
 
-  .app { position: relative; z-index: 1; }
+  .app { position: relative; z-index: 1; min-height: 100vh; }
+  .app.light { background: #FAFAF7; }
 
   /* ─── Top Bar ─── */
   .topbar {
@@ -765,7 +815,7 @@
 <div class="app">
 
   <!-- Demo Banner -->
-  <div style="background:var(--gold);color:var(--navy);text-align:center;padding:6px;font-size:12px;font-weight:600;letter-spacing:0.05em;">DEMO — SIMULATED DATA &middot; Not a real agency</div>
+  <div class="demo-banner" style="background:var(--gold);color:#1B2A4A;text-align:center;padding:6px;font-size:12px;font-weight:600;letter-spacing:0.05em;">DEMO — SIMULATED DATA &middot; Not a real agency</div>
 
   <!-- Top Bar -->
   <div class="topbar">
@@ -781,6 +831,9 @@
       <div class="plan-badge"><span class="dot"></span> Pro Plan</div>
     </div>
     <div class="topbar-right">
+      <button class="btn btn-enterprise mode-toggle" onclick="document.querySelector('.app').classList.toggle('light'); this.textContent = document.querySelector('.app').classList.contains('light') ? '☀ Light Mode' : '☾ Dark Mode'">
+        ☾ Dark Mode
+      </button>
       <button class="btn btn-enterprise">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         Upgrade to Enterprise
